@@ -17,16 +17,36 @@ public class AutorService {
 
     private AutorRepository repository;
 
-    public AutorResponse adicionarAutor (AutorRequest autorRequest) {
+    public AutorResponse adicionarAutor(AutorRequest autorRequest) {
         Autor autor = repository.save(autorRequest.toEntity());
         return autor.toDTO();
     }
 
-    public List<AutorResponse> buscarAutors () {
+    public List<AutorResponse> buscarAutors() {
         return repository.findAll().stream().map(Autor::toDTO).collect(Collectors.toList());
     }
 
-    public Autor buscarAutorsId (Integer id) {
+    public AutorResponse buscarAutorResponseId(Integer id) {
+        Autor autor = repository.findById(id).orElseThrow(NoSuchElementException::new);
+        return autor.toDTO();
+    }
+
+    public void deletarAutor(Integer id) {
+        buscarAutorResponseId(id);
+        repository.deleteById(id);
+    }
+
+    public AutorResponse atualizarAutor(AutorRequest autorRequest, Integer id) {
+        buscarAutorResponseId(id);
+
+        Autor autor = autorRequest.toEntity();
+        autor.setId(id);
+        repository.save(autor);
+        return autor.toDTO();
+    }
+
+
+    public Autor buscarAutorsId(Integer id) {
         return repository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 

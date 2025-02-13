@@ -27,6 +27,34 @@ public class AutorController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<AutorResponse> putAutor(@RequestBody @Validated AutorRequest autorRequest, @PathVariable Integer id) {
+        try {
+            return new ResponseEntity<>(service.atualizarAutor(autorRequest, id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAutor(@PathVariable Integer id) {
+        try {
+            service.deletarAutor(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AutorResponse> getAutorByID(@PathVariable Integer id) {
+        try {
+            return new ResponseEntity<>(service.buscarAutorResponseId(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
+
     @GetMapping
     public ResponseEntity<List<AutorResponse>> getAutor() {
         try {
@@ -35,5 +63,6 @@ public class AutorController {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
+
 
 }

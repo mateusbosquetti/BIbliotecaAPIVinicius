@@ -2,13 +2,17 @@ package net.weg.bibliotecaapi.Service;
 
 import lombok.AllArgsConstructor;
 import net.weg.bibliotecaapi.DTO.Request.EmprestimoRequest;
+import net.weg.bibliotecaapi.DTO.Request.EmprestimoRequest;
 import net.weg.bibliotecaapi.DTO.Response.EmprestimoResponse;
+import net.weg.bibliotecaapi.DTO.Response.EmprestimoResponse;
+import net.weg.bibliotecaapi.Entity.Emprestimo;
 import net.weg.bibliotecaapi.Entity.Emprestimo;
 import net.weg.bibliotecaapi.Repository.EmprestimoRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,6 +38,25 @@ public class EmprestimoService {
 
     public List<EmprestimoResponse> buscarEmprestimos () {
         return repository.findAll().stream().map(Emprestimo::toDTO).collect(Collectors.toList());
+    }
+
+    public EmprestimoResponse buscarEmprestimoResponseId(Integer id) {
+        Emprestimo emprestimo = repository.findById(id).orElseThrow(NoSuchElementException::new);
+        return emprestimo.toDTO();
+    }
+
+    public void deletarEmprestimo(Integer id) {
+        buscarEmprestimoResponseId(id);
+        repository.deleteById(id);
+    }
+
+    public EmprestimoResponse atualizarEmprestimo(EmprestimoRequest emprestimoRequest, Integer id) {
+        buscarEmprestimoResponseId(id);
+
+        Emprestimo emprestimo = toEntity(emprestimoRequest);
+        emprestimo.setId(id);
+        repository.save(emprestimo);
+        return emprestimo.toDTO();
     }
     
 }
