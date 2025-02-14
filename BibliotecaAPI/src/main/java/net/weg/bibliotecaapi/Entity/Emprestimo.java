@@ -9,6 +9,12 @@ import net.weg.bibliotecaapi.DTO.Response.EmprestimoResponse;
 
 import java.time.LocalDate;
 
+/**
+ * @author Mateus Henrique Bosquetti
+ * @version 1.0
+ * @since 13/02/2025
+ * Representa o Emprestimo no Sistema
+ */
 @Builder
 @Entity
 @Data
@@ -31,6 +37,10 @@ public class Emprestimo {
     @Column(nullable = false)
     public LocalDate horarioFeito;
 
+    /**
+     * Converte uma entidade para um DTO de resposta
+     * @return DTO de resposta da entidade Emprestimo
+     */
     public EmprestimoResponse toDTO() {
         return new EmprestimoResponse(
                 this.id,

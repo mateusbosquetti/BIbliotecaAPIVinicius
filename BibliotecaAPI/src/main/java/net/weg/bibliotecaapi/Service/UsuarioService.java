@@ -20,25 +20,50 @@ public class UsuarioService {
 
     private UsuarioRepository repository;
 
+    /**
+     * Método para adicionar um Usuario novo
+     * @param usuarioRequest
+     * @return DTO de resposta do Usuario
+     */
     public UsuarioResponse adicionarUsuario (UsuarioRequest usuarioRequest) {
         Usuario usuario = repository.save(usuarioRequest.toEntity());
         return usuario.toDTO();
     }
 
+    /**
+     * Método para listar todos os Usuarios
+     * @return Lista de DTO's de response do Usuario
+     */
     public List<UsuarioResponse> buscarUsuarios () {
         return repository.findAll().stream().map(Usuario::toDTO).collect(Collectors.toList());
     }
 
+    /**
+     * Método para buscar um Usuario especifico
+     * @param id
+     * @return DTO de resposta do Usuario encontrado
+     */
     public UsuarioResponse buscarUsuarioResponseId(Integer id) {
         Usuario usuario = repository.findById(id).orElseThrow(NoSuchElementException::new);
         return usuario.toDTO();
     }
 
+    /**
+     * Método para deletar um Usuario especifico
+     * @param id
+     * @return void
+     */
     public void deletarUsuario(Integer id) {
         buscarUsuarioResponseId(id);
         repository.deleteById(id);
     }
 
+    /**
+     * Método para editar um Usuario especifico
+     * @param usuarioRequest
+     * @param id
+     * @return DTO de resposta do Usuario encontrado
+     */
     public UsuarioResponse atualizarUsuario(UsuarioRequest usuarioRequest, Integer id) {
         buscarUsuarioResponseId(id);
 
@@ -47,7 +72,12 @@ public class UsuarioService {
         repository.save(usuario);
         return usuario.toDTO();
     }
-    
+
+    /**
+     * Método para buscar um Usuario especifico
+     * @param id
+     * @return Entidade do Usuario encontrado
+     */
     public Usuario buscarUsuarioID (Integer id) {
         return repository.findById(id).orElseThrow(NoSuchElementException::new);
     }

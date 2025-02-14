@@ -9,6 +9,12 @@ import net.weg.bibliotecaapi.DTO.Response.LivroResponse;
 
 import java.util.List;
 
+/**
+ * @author Mateus Henrique Bosquetti
+ * @version 1.0
+ * @since 13/02/2025
+ * Representa o Emprestimo no Sistema
+ */
 @Builder
 @Entity
 @Data
@@ -33,6 +39,10 @@ public class Livro {
     @OneToMany(mappedBy = "livro")
     public List<Emprestimo> emprestimos;
 
+    /**
+     * Converte uma entidade para um DTO de resposta
+     * @return DTO de resposta da entidade Livro
+     */
     public LivroResponse toDTO() {
         return new LivroResponse(
                 this.id,

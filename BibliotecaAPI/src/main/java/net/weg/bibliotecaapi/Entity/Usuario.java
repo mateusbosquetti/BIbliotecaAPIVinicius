@@ -10,6 +10,12 @@ import net.weg.bibliotecaapi.DTO.Response.UsuarioResponse;
 
 import java.util.List;
 
+/**
+ * @author Mateus Henrique Bosquetti
+ * @version 1.0
+ * @since 13/02/2025
+ * Representa o Emprestimo no Sistema
+ */
 @Builder
 @Entity
 @Data
@@ -29,6 +35,10 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     public List<Emprestimo> emprestimos;
 
+    /**
+     * Converte uma entidade para um DTO de resposta
+     * @return DTO de resposta da entidade Usuario
+     */
     public UsuarioResponse toDTO() {
         return new UsuarioResponse(
                 this.id,
