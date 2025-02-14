@@ -15,6 +15,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+/**
+ * @author Mateus Henrique Bosquetti
+ * @version 1.0
+ * @since 13/02/2025
+ * Regras de negócio do Livro
+ */
 @Service
 @AllArgsConstructor
 public class LivroService {
