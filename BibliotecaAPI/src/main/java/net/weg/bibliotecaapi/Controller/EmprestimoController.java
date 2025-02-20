@@ -33,11 +33,9 @@ public class EmprestimoController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<EmprestimoResponse> postEmprestimo(@RequestBody @Validated EmprestimoRequest emprestimoRequest) {
-        try {
+
             return new ResponseEntity<>(service.adicionarEmprestimo(emprestimoRequest), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
     }
 
     @PutMapping("/{id}")
@@ -49,11 +47,9 @@ public class EmprestimoController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<EmprestimoResponse> putEmprestimo(@RequestBody @Validated EmprestimoRequest emprestimoRequest, @PathVariable Integer id) {
-        try {
+
             return new ResponseEntity<>(service.atualizarEmprestimo(emprestimoRequest, id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
     }
 
     @DeleteMapping("/{id}")
@@ -65,12 +61,10 @@ public class EmprestimoController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<Void> deleteEmprestimo(@PathVariable Integer id) {
-        try {
+
             service.deletarEmprestimo(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
     }
 
     @GetMapping("/{id}")
@@ -82,11 +76,9 @@ public class EmprestimoController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<EmprestimoResponse> getEmprestimoByID(@PathVariable Integer id) {
-        try {
+
             return new ResponseEntity<>(service.buscarEmprestimoResponseId(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
     }
 
     @GetMapping
@@ -98,11 +90,9 @@ public class EmprestimoController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<List<EmprestimoResponse>> getEmprestimo() {
-        try {
+
             return new ResponseEntity<>(service.buscarEmprestimos(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
     }
     
 }

@@ -31,11 +31,9 @@ public class AutorController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<AutorResponse> postAutor(@RequestBody @Validated AutorRequest autorRequest) {
-        try {
-            return new ResponseEntity<>(service.adicionarAutor(autorRequest), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.adicionarAutor(autorRequest), HttpStatus.OK);
+
     }
 
     @PutMapping("/{id}")
@@ -47,11 +45,9 @@ public class AutorController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<AutorResponse> putAutor(@RequestBody @Validated AutorRequest autorRequest, @PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(service.atualizarAutor(autorRequest, id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.atualizarAutor(autorRequest, id), HttpStatus.OK);
+
     }
 
     @DeleteMapping("/{id}")
@@ -63,12 +59,9 @@ public class AutorController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<Void> deleteAutor(@PathVariable Integer id) {
-        try {
-            service.deletarAutor(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+        service.deletarAutor(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @GetMapping("/{id}")
@@ -80,11 +73,9 @@ public class AutorController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<AutorResponse> getAutorByID(@PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(service.buscarAutorResponseId(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.buscarAutorResponseId(id), HttpStatus.OK);
+
     }
 
     @GetMapping
@@ -96,11 +87,9 @@ public class AutorController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<List<AutorResponse>> getAutor() {
-        try {
-            return new ResponseEntity<>(service.buscarAutors(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.buscarAutors(), HttpStatus.OK);
+
     }
 
 

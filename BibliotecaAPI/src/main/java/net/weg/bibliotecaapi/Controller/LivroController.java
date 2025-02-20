@@ -33,11 +33,9 @@ public class LivroController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<LivroResponse> postLivro(@RequestBody @Validated LivroRequest livroRequest) {
-        try {
-            return new ResponseEntity<>(service.adicionarLivro(livroRequest), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.adicionarLivro(livroRequest), HttpStatus.OK);
+
     }
 
     @PutMapping("/{id}")
@@ -49,11 +47,9 @@ public class LivroController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<LivroResponse> putLivro(@RequestBody @Validated LivroRequest livroRequest, @PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(service.atualizarLivro(livroRequest, id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.atualizarLivro(livroRequest, id), HttpStatus.OK);
+
     }
 
     @DeleteMapping("/{id}")
@@ -65,12 +61,10 @@ public class LivroController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<Void> deleteLivro(@PathVariable Integer id) {
-        try {
-            service.deletarLivro(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        service.deletarLivro(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @GetMapping("/{id}")
@@ -82,11 +76,9 @@ public class LivroController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<LivroResponse> getLivroByID(@PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(service.buscarLivroResponseId(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.buscarLivroResponseId(id), HttpStatus.OK);
+
     }
 
     @GetMapping
@@ -98,11 +90,9 @@ public class LivroController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<List<LivroResponse>> getLivro() {
-        try {
-            return new ResponseEntity<>(service.buscarLivros(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.buscarLivros(), HttpStatus.OK);
+
     }
-    
+
 }

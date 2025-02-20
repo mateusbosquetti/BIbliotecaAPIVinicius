@@ -33,11 +33,9 @@ public class UsuarioController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<UsuarioResponse> postUsuario(@RequestBody @Validated UsuarioRequest usuarioRequest) {
-        try {
-            return new ResponseEntity<>(service.adicionarUsuario(usuarioRequest), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.adicionarUsuario(usuarioRequest), HttpStatus.OK);
+
     }
 
     @PutMapping("/{id}")
@@ -49,11 +47,9 @@ public class UsuarioController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<UsuarioResponse> putUsuario(@RequestBody @Validated UsuarioRequest usuarioRequest, @PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(service.atualizarUsuario(usuarioRequest, id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.atualizarUsuario(usuarioRequest, id), HttpStatus.OK);
+
     }
 
     @DeleteMapping("/{id}")
@@ -65,12 +61,10 @@ public class UsuarioController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<Void> deleteUsuario(@PathVariable Integer id) {
-        try {
-            service.deletarUsuario(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        service.deletarUsuario(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @GetMapping("/{id}")
@@ -82,11 +76,9 @@ public class UsuarioController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<UsuarioResponse> getUsuarioByID(@PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(service.buscarUsuarioResponseId(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.buscarUsuarioResponseId(id), HttpStatus.OK);
+
     }
 
     @GetMapping
@@ -98,11 +90,9 @@ public class UsuarioController {
             @ApiResponse(responseCode = "500", description = "Falha do Server")
     })
     public ResponseEntity<List<UsuarioResponse>> getUsuario() {
-        try {
-            return new ResponseEntity<>(service.buscarUsuarios(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+
+        return new ResponseEntity<>(service.buscarUsuarios(), HttpStatus.OK);
+        
     }
-    
+
 }
